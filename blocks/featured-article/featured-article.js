@@ -65,7 +65,13 @@ export default async function decorate($block) {
   const $hero = doc.querySelector('body > main picture');
   if ($hero) {
     $image.append($hero);
+
+  const author = getMetadata('author', doc);
+const $a = document.createElement('a');
+$a.textContent = "by: " + author;
   }
 
   $block.replaceChildren($image, $text);
 }
+
+
