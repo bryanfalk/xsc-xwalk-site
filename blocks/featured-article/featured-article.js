@@ -55,9 +55,13 @@ export default async function decorate($block) {
   link.textContent = 'Read More';
   link.className = 'button primary';
 
+  const author = getMetadata('author', doc);
+  const $a = document.createElement('a');
+  $a.textContent = "by: " + author;
+  
   const $text = document.createElement('div');
   $text.classList.add('text');
-  $text.append($pre, $h2, $p, $link);
+  $text.append($pre, $h2, $p, $link, $a);
 
   const $image = document.createElement('div');
   $image.classList.add('image');
@@ -66,9 +70,7 @@ export default async function decorate($block) {
   if ($hero) {
     $image.append($hero);
 
-  const author = getMetadata('author', doc);
-const $a = document.createElement('a');
-$a.textContent = "by: " + author;
+
   }
 
   $block.replaceChildren($image, $text);
